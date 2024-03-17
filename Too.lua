@@ -1,6 +1,6 @@
 local Key_Path = "/storage/emulated/0/Android/data/"
 local Key_File = Key_Path .. "com.google.android.1"
-local KEY = "N2y4Vi6ZvC0bblA8AFHejwvqG4OxtcJz"
+local KEY = "9999"
 local shift_amount = 5
 
 -- เข้ารหัสตัวเลขและสัญลักษณ์

@@ -1,6 +1,6 @@
 local Key_Path = "/storage/emulated/0/Android/data/"
 local Key_File = Key_Path .. "com.google.android.1"
-local KEY = "9999"
+local KEY = "N2y4Vi6ZvC0bblA8AFHejwvqG4OxtcJz"
 local shift_amount = 5
 
 -- เข้ารหัสตัวเลขและสัญลักษณ์
@@ -127,6 +127,7 @@ local main = function()
 
     local inputKeyString = inputKey[1]
     if inputKeyString ~= KEY then
+        os.remove(Key_File)
         gg.alert("⛔ Key ของคุณไม่ถูกต้อง ⛔")
         return
     end

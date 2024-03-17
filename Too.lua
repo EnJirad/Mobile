@@ -91,7 +91,7 @@ local validateHwidAndKey = function(content)
 end
 
 -- ฟังก์ชั่นหลัก
-local main = function()
+local User_Key = function()
     if fileExists(Key_File) then
         local inputText = readFile(Key_File)
         if inputText then
@@ -99,10 +99,12 @@ local main = function()
             if isValid then
                 return
             else
+                os.remove(Key_File)
                 print("ไม่พบ Key ในระบบ")
                 return
             end
         else
+            os.remove(Key_File)
             print("ไม่สามารถอ่านข้อมูลจากระบบได้")
             return
         end
@@ -110,6 +112,7 @@ local main = function()
         local success = createFile(Key_File)
         if success then
         else
+            os.remove(Key_File)
             prin("⛔ ไม่สามารถ ยืนยัน User ในระบบ ได้ ⛔")
             return
         end
@@ -122,14 +125,17 @@ local main = function()
     )
 
     if inputKey == nil or inputKey[1] == "" then
+        os.remove(Key_File)
         gg.alert("คุณยังไม่ได้กรอก Key")
+        gg.setVisible(false)
         return
     end
 
     local inputKeyString = inputKey[1]
     if inputKeyString ~= KEY then
         os.remove(Key_File)
-        print("⛔ Key ของคุณไม่ถูกต้อง ⛔")
+        gg.alert("⛔ Key ของคุณไม่ถูกต้อง ⛔")
+        gg.setVisible(false)
         return
     end
     
@@ -146,4 +152,4 @@ local main = function()
     end
 end
 
-main()
+User_Key()

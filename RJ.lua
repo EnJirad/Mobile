@@ -1,6 +1,5 @@
 local Key_Path = "/storage/emulated/0/Android/data/"
 local Key_File = Key_Path .. "com.google.android.key"
-local Hwid = "a0%:32%:99%:e8%:e5%:01"
 local KEY = "aaa"
 local shift_amount = 5
 
@@ -80,16 +79,51 @@ local createFile = function(name)
     return false
 end
 
+-- ตรวจสอบ HWID และ Key
+local validateHwidAndKey = function(content)
+    if content then
+        local savedKey = content:match("(.+)")
+        if savedKey then
+            local decryptedKey = decryptNumberAndSymbol(savedKey, shift_amount)
+        end
+    end
+    return false, nil, nil
+end
+
 -- ฟังก์ชั่นหลัก
 local main = function()
+    if fileExists(Key_File) then
+        local inputText = readFile(Key_File)
+        if inputText then
+            local isValid, decryptedKey = validateHwidAndKey(inputText)
+            if isValid then
+                gg.alert("Key ที่ถอดรหัส: " .. decryptedKey)
+                return
+            else
+                gg.alert("ไม่พบ Key")
+            end
+        else
+            gg.alert("ไม่สามารถอ่านข้อมูลจากไฟล์ได้")
+            return
+        end
+    else
+        local success = createFile(Key_File)
+        if success then
+            gg.alert("มีการสร้างไฟล์ใหม่แล้ว")
+        else
+            gg.alert("ไม่สามารถสร้างไฟล์ใหม่ได้")
+            return
+        end
+    end
+
     local inputKey = gg.prompt(
         {"Enter Key"},
         {"aaa"},
         {"text"}
     )
 
-    if inputKey == nil then
-        gg.alert("คุณยังไม่ได้กรอก Key")
+    if inputKey == nil or inputKey[1] == "" then
+        gg.alert("ไม่มีอินพุตที่ให้ไว้")
         return
     end
 
@@ -99,12 +133,11 @@ local main = function()
         return
     end
     
-    local encryptedHwid = encryptNumberAndSymbol(Hwid, shift_amount)
     local encryptedKey = encryptNumberAndSymbol(KEY, shift_amount)
 
     local fileEdit = io.open(Key_File, "w")
     if fileEdit then 
-        fileEdit:write(encryptedHwid .. "=" .. encryptedKey)
+        fileEdit:write(encryptedKey)
         fileEdit:close()
     else
         return

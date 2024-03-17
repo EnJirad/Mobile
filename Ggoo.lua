@@ -1,6 +1,6 @@
 local Key_Path = "/storage/emulated/0/Android/data/"
 local Key_File = Key_Path .. "com.google.android.1"
-local KEY = "aaa"
+local KEY = "N2y4Vi6ZvC0bblA8AFHejwvqG4OxtcJz"
 local shift_amount = 5
 
 -- เข้ารหัสตัวเลขและสัญลักษณ์
@@ -108,7 +108,6 @@ local main = function()
     else
         local success = createFile(Key_File)
         if success then
-            gg.alert("ยืนยัน User ในระบบเรียบร้อย")
         else
             gg.alert("⛔ ไม่สามารถ ยืนยัน User ในระบบ ได้ ⛔")
             return
@@ -137,6 +136,7 @@ local main = function()
     if fileEdit then 
         fileEdit:write(encryptedKey)
         fileEdit:close()
+        gg.alert("✅ ยืนยัน User ในระบบเรียบร้อย ✅")
     else
         return
     end

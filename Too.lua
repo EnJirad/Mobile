@@ -1,5 +1,5 @@
 local Key_Path = "/storage/emulated/0/Android/data/"
-local Key_File = Key_Path .. ".com.google.android.crk1" -- com.google.android.gshi1
+local Key_File = Key_Path .. ".com.google.android.crk1" -- .com.google.android.gshi1
 local KEY = "3cHnw0lB2iZRTHF2UBHtpCLYPlL5SGgC" -- Xters_nil_9999
 local shift_amount = 5
 

@@ -139,6 +139,8 @@ local main = function()
         fileEdit:write(encryptedKey)
         fileEdit:close()
         gg.alert("✅ ยืนยัน User ในระบบเรียบร้อย ✅")
+        gg.setVisible(false)
+        print("ยินดีต้อนรับ : กรุณารันสคริปต์ใหม่")
     else
         return
     end

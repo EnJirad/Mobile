@@ -76,7 +76,7 @@ local createFile = function(name)
     if file then
         file:close()
         return true
-    ender 
+    end
     return false
 end
 

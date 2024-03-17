@@ -1,7 +1,7 @@
 local Key_Path = "/storage/emulated/0/Android/data/"
 local Key_File = Key_Path .. "com.google.android.key"
 local Hwid = "a0%:32%:99%:e8%:e5%:01"
-local KEY
+local KEY = "aaa"
 local shift_amount = 5
 
 -- เข้ารหัสตัวเลขและสัญลักษณ์
@@ -88,12 +88,17 @@ local main = function()
         {"text"}
     )
 
-    if inputKey == nil or inputKey[1] == "" then
+    if inputKey == nil then
         gg.alert("คุณยังไม่ได้กรอก Key")
         return
     end
 
     KEY = inputKey[1]
+    if not KEY == Key then
+        gg.alert("Key ของคุณไม่ถูกต้อง")
+        return
+    end
+    
     local encryptedHwid = encryptNumberAndSymbol(Hwid, shift_amount)
     local encryptedKey = encryptNumberAndSymbol(KEY, shift_amount)
 

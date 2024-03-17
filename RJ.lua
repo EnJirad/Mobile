@@ -76,7 +76,7 @@ local createFile = function(name)
     if file then
         file:close()
         return true
-    end
+    ender 
     return false
 end
 
@@ -93,9 +93,9 @@ local main = function()
         return
     end
 
-    KEY = inputKey[1]
-    if not KEY == Key then
-        gg.alert("Key ของคุณไม่ถูกต้อง")
+    local inputKeyString = inputKey[1]
+    if inputKeyString ~= KEY then
+        gg.alert("⛔ Key ของคุณไม่ถูกต้อง ⛔")
         return
     end
     

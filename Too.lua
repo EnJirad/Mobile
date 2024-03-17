@@ -99,17 +99,18 @@ local main = function()
             if isValid then
                 return
             else
-                gg.alert("ไม่พบ Key")
+                print("ไม่พบ Key ในระบบ")
+                return
             end
         else
-            gg.alert("ไม่สามารถอ่านข้อมูลจากระบบได้")
+            print("ไม่สามารถอ่านข้อมูลจากระบบได้")
             return
         end
     else
         local success = createFile(Key_File)
         if success then
         else
-            gg.alert("⛔ ไม่สามารถ ยืนยัน User ในระบบ ได้ ⛔")
+            prin("⛔ ไม่สามารถ ยืนยัน User ในระบบ ได้ ⛔")
             return
         end
     end
@@ -128,7 +129,7 @@ local main = function()
     local inputKeyString = inputKey[1]
     if inputKeyString ~= KEY then
         os.remove(Key_File)
-        gg.alert("⛔ Key ของคุณไม่ถูกต้อง ⛔")
+        print("⛔ Key ของคุณไม่ถูกต้อง ⛔")
         return
     end
     

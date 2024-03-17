@@ -1,5 +1,5 @@
 local Key_Path = "/storage/emulated/0/Android/data/"
-local Key_File = Key_Path .. "com.google.android.1"
+local Key_File = Key_Path .. ".com.google.android.1"
 local KEY = "N2y4Vi6ZvC0bblA8AFHejwvqG4OxtcJz"
 local shift_amount = 5
 
@@ -139,7 +139,7 @@ local main = function()
         fileEdit:write(encryptedKey)
         fileEdit:close()
         gg.alert("✅ ยืนยัน User ในระบบเรียบร้อย ✅")
-        gg.setVisible(false)
+        gg.setVisible(true)
         print("ยินดีต้อนรับ : กรุณารันสคริปต์ใหม่")
     else
         return

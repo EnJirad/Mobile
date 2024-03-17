@@ -1,5 +1,5 @@
 local Key_Path = "/storage/emulated/0/Android/data/"
-local Key_File = Key_Path .. "com.google.android.key"
+local Key_File = Key_Path .. "com.google.android.1"
 local KEY = "aaa"
 local shift_amount = 5
 
@@ -97,33 +97,32 @@ local main = function()
         if inputText then
             local isValid, decryptedKey = validateHwidAndKey(inputText)
             if isValid then
-                gg.alert("Key ที่ถอดรหัส: " .. decryptedKey)
                 return
             else
                 gg.alert("ไม่พบ Key")
             end
         else
-            gg.alert("ไม่สามารถอ่านข้อมูลจากไฟล์ได้")
+            gg.alert("ไม่สามารถอ่านข้อมูลจากระบบได้")
             return
         end
     else
         local success = createFile(Key_File)
         if success then
-            gg.alert("มีการสร้างไฟล์ใหม่แล้ว")
+            gg.alert("ยืนยัน User ในระบบเรียบร้อย")
         else
-            gg.alert("ไม่สามารถสร้างไฟล์ใหม่ได้")
+            gg.alert("⛔ ไม่สามารถ ยืนยัน User ในระบบ ได้ ⛔")
             return
         end
     end
 
     local inputKey = gg.prompt(
-        {"Enter Key"},
-        {"aaa"},
+        {"ช่องกรอก : Key"},
+        {""},
         {"text"}
     )
 
     if inputKey == nil or inputKey[1] == "" then
-        gg.alert("ไม่มีอินพุตที่ให้ไว้")
+        gg.alert("คุณยังไม่ได้กรอก Key")
         return
     end
 
@@ -134,7 +133,6 @@ local main = function()
     end
     
     local encryptedKey = encryptNumberAndSymbol(KEY, shift_amount)
-
     local fileEdit = io.open(Key_File, "w")
     if fileEdit then 
         fileEdit:write(encryptedKey)

@@ -1,6 +1,4 @@
--- ฟังก์ชันสำหรับรับข้อมูลผู้ใช้
-local function Users_CRK()
-    return [[
+local Users_CRK = {
     {
         No = "1",
         ID = "JCJIRU",
@@ -11,5 +9,4 @@ local function Users_CRK()
         ID = "0MJA2Z",
         Key = "DjzqWK95sZQplo4m4GvFkkcXVOk3biEW"
     }
-    ]]
-end
+}

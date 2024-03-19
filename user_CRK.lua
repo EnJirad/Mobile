@@ -101,10 +101,6 @@ local Users_CRK = {
     }
 }
 
-local file_path = "/storage/emulated/0/Code/Lua/Save.lua"
-
-
-
 local GG = gg.PACKAGE
 local file_path = "/storage/emulated/0/Android/data/" .. GG .. "/cache/"
 local Regis_File = file_path .. "register_user.lua"

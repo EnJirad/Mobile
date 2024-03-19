@@ -3,7 +3,7 @@ local Users_CRK = {
         No = "1",
         ID = "JCJIRU",
         Key = "3cHnw0lB2iZRTHF2UBHtpCLYPlL5SGgC",
-        Status = "false"
+        Status = "true"
     },
     {
         No = "2",

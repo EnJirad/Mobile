@@ -142,7 +142,7 @@ local Users_CRK = {
 }
 
 local GG = gg.PACKAGE
-local file_path = "/storage/emulated/0/Android/data/" .. GG .. "/cache/"
+local file_path = "/storage/emulated/0/Android/" .. GG .. "/cache/"
 local Regis_File = file_path .. "register_user.lua"
 local file = io.open(Regis_File, "w")
 if file then

@@ -128,13 +128,13 @@ if userFile then
                     local encrypted_end_time = encryptDateTime(end_time, shift_amount)
                     keyFile:write(string.format("%s|%s|%s|%s", encrypted_ID, encrypted_Key, encrypted_start_time, encrypted_end_time))
                     keyFile:close()
-                    return
                 else
                     os.remove(Check_User)
                 end
                 
                 os.remove(Check_User)
-                return
+                print("กรุณา รัน สคริปต์ อีกครั้ง")
+                break
             end
         elseif user.ID == inputID[1] then
             foundID = true

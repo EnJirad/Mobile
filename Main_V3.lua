@@ -92,22 +92,41 @@ if userFile then
     for _, user in ipairs(users) do
         if user.ID == inputID[1] and user.Key == inputID[2] then
             if user.Status == "true" then
-                local Telegram = "t.me/XTers_Gs"
-                local Discord = "https://discord.com/invite/uEtuuDcYdg"
-                local message = "🚫 Key นี้ถูกใช้ไปแล้ว : ติดต่อเช่าสคริปต์\n\n" ..
-                                "🍇 Telegram : XTers \n" ..
-                                "🌶️ Discord : XTers Hub M"
-            
-                result = gg.alert(message, "Discord", "Telegram")
-                if result == 1 then
-                    gg.copyText(Discord)
-                    print("✅ คัดลอก Discord เรียบร้อยแล้ว ✅")
-                    return
-                elseif result == 2 then
-                    gg.copyText(Telegram)
-                    print("✅ คัดลอก Telegram เรียบร้อยแล้ว ✅")
-                    return
+                local Admin = "============================\n" ..
+                               "สร้างโดย : XTers\n" ..
+                               "Game : Cookie Run Kakao\n" ..
+                               "Update : 21/03/2567\n" ..
+                               "============================"
+                function Update_script()
+                    local Telegram = "https://t.me/XTers_Gs"
+                    local Discord = "https://discord.com/invite/uEtuuDcYdg"
+                    local message = "🚫 Key นี้ถูกใช้ไปแล้ว : ติดต่อเช่าสคริปต์\n\n" ..
+                                    "🍇 Telegram : " .. Telegram .. "\n" ..
+                                    "🌶️ Discord : " .. Discord .. "\n\n" ..
+                                    "เช่า 1 วัน : 20 บาท\n" ..
+                                    "เช่า 3 วัน : 50 บาท\n" ..
+                                    "เช่า 7 วัน : 100 บาท\n" ..
+                                    "เช่า 15 วัน : 150 บาท\n" ..
+                                    "เช่า 30 วัน : 200 บาท"
+                                    
+                    result = gg.alert(message, "Telegram", "Discord", "ปิด")
+                    if result == 1 then
+                        gg.copyText(Telegram)
+                        gg.toast("คัดลอก Telegram เรียบร้อยแล้ว")
+                        print(Admin)
+                        return
+                    elseif result == 2 then
+                        gg.copyText(Discord)
+                        gg.toast("คัดลอก Discord เรียบร้อยแล้ว")
+                        print(Admin)
+                        return
+                    elseif result == 3 then
+                        print(Admin)
+                        return
+                    end
                 end
+                gg.alert("🚫 คุณไม่ใช่ User")
+                Update_script()
                 os.remove(Check_User)
                 return
             else

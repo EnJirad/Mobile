@@ -11,7 +11,7 @@ local Users_CRK = {
         ID = "0MJA2Z",
         Key = "DjzqWK95sZQplo4m4GvFkkcXVOk3biEW",
         Status = "false",
-        Time = "30"
+        Time = "7"
     },
     {
         No = "3",

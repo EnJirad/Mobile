@@ -311,7 +311,7 @@ function Normal_Land()
         local Address_Value_1 = inputCode[1]
         local Address_Value_2 = inputCode[2]
         local Address_Value_3 = inputCode[3]
-        local Name = "💠 ปั้ม วิ่ง ไวจัดๆ ฟังก์ชั่นนี้ เอามัน เฉยๆ"
+        local Name = "💠 ใส่โค้ด 4216, 4217, 4218 เอง"
 
         gg.clearResults()
         gg.setValues({
@@ -398,7 +398,6 @@ function Normal_Land()
         gg.sleep(1000)
     end
 
-    local Value_ID = "4265"
     local Choice_Pet = {
         "🎃 ❲ แพท น้ำเต้า ❳", --1
         "☃️ ❲ แพท หมวกซานต้า หรือ ตัวนิ้วโป้ง ❳", --2
@@ -406,6 +405,13 @@ function Normal_Land()
     }
     
     local typeChoice = gg.choice(Choice_Pet, nil, "เลือกแพท")
+    local inputPet = gg.prompt(
+            {"แพท เสก : ค่าเริ่มต้น ดาวสามสี"},
+            {"4265"},
+            {""}
+        )
+        
+    local Value_ID = inputPet[1]
     if typeChoice == nil then
         NM_return()
         gg.toast("คุณยังไม่ได้เลือก แพท เลย ❗")
@@ -471,7 +477,7 @@ function Normal_Land()
     elseif typeChoice == 3 then
         local Name = "🍫 เปิดใช้งาน แพท แล้ว ✅"
         local Value_1 = "1018"
-        local Value_2 = "4265"
+        local Value_2 = inputPet[1]
             
         gg.clearResults()
         gg.setRanges(gg.REGION_C_ALLOC)
@@ -565,6 +571,7 @@ function Ice_Land()
     end
     
     local Name_Choice = {
+        "💠 ใส่โค้ด 4216, 4217, 4218 เอง ( ปรับเวลาหยุดได้ )",
         "🏅 ปั้ม Exp : x2 เหรียญ ได้ ( ปรับเวลาหยุดได้ )",
         "👑 ปั้ม Exp : 🚫 ห้าม โบนัส กับ x2 เหรียญ ( แนะนำ 4:30 น.)",
         "💰 ปั้ม เงิน : x2 เหรียญ ได้ ( ปรับเวลาหยุดได้ )",
@@ -579,7 +586,141 @@ function Ice_Land()
         gg.clearResults()
         gg.toast("คุณยังไม่ได้เลือกอะไรเลย ❗")
         Game_CK()
-        return    
+        return
+        
+    elseif selectedType == "💠 ใส่โค้ด 4216, 4217, 4218 เอง ( ปรับเวลาหยุดได้ )" then
+        local inputIce = gg.prompt(
+            {"ช่อง : 4216","ช่อง : 4217", "ช่อง : 4218"},
+            {"4216","4217","4218"},
+            {"","",""}
+        )
+    
+        local Address_Value_1 = inputIce[1]
+        local Address_Value_2 = inputIce[2]
+        local Address_Value_3 = inputIce[3]
+        
+        gg.clearResults()
+        gg.setValues({
+            {address = Ic1_address, value = Address_Value_1, flags = gg.TYPE_DWORD},
+            {address = Ic1_address + 4, value = Address_Value_2, flags = gg.TYPE_DWORD},
+            {address = Ic1_address + 8, value = Address_Value_3, flags = gg.TYPE_DWORD}
+        })
+        
+        gg.clearResults()
+        Ic1_Check = true
+        
+        local function readTimeFromFile()
+            local file = io.open(GG_Time1, "r")
+            if file then
+                local content = file:read("*all")
+                file:close()
+                return content
+            else
+                return nil
+            end
+        end
+        
+        local function writeTimeToFile(time)
+            local file = io.open(GG_Time1, "w")
+            if file then
+                file:write(time)
+                file:close()
+            end
+        end
+        
+        local lastSavedTime1 = readTimeFromFile()
+        Input_Time = gg.prompt(
+            {"ใส่เวลา ที่อยากให้หยุด เกม (รูปแบบ = 10:20 นาที - 0:30 วินาที)", "ใส่จำนวนรอบในการเล่น ( นับตามกุญแจ )", "ใส่เวลา รอวน อีกครั้ง"},
+            {lastSavedTime1 or "5:00","1","15"},
+            {"text", "text", "text"}
+        )
+        
+        if Input_Time == nil then
+            gg.clearResults()
+            gg.setValues(Ic_HP_Original_Value)
+            gg.toast("🚨 คืนค่า HP แล้ว 💉")
+            gg.sleep(50)
+            for address, value in pairs(Ic1_Original) do
+                gg.setValues({{address = address, value = value, flags = gg.TYPE_DWORD}})
+            end
+            gg.toast("🌳 ปิด ปั้มของ แล้ว 🏆")
+            Ic1_Check = false
+            Game_CK()
+        end
+        
+        local minutes, seconds = Input_Time[1]:match("(%d+):(%d+)")
+        minutes = tonumber(minutes)
+        seconds = tonumber(seconds)
+        
+        local totalSeconds = minutes * 60 + seconds
+        writeTimeToFile(Input_Time[1])
+        local Number = Input_Time[2]
+        local Waiting = Input_Time[3]
+        
+        local currentRound = 0
+        
+        while true do
+            for j = 1, tonumber(Number) do
+                currentRound = currentRound + 1
+                
+                for i = 2, 0, -1 do
+                    gg.toast("เริ่มเกม ก่อน " .. i .. " วินาที")
+                    gg.sleep(1000)
+                end
+                gg.toast("เริ่ม จับเวลา")
+                gg.sleep(1000)
+                
+                for i = 0, totalSeconds do
+                    local currentMinutes = math.floor(i / 60)
+                    local currentSeconds = i % 60
+                    local displayTime = string.format("รอบที่ %d เวลา %d:%02d น.", currentRound, currentMinutes, currentSeconds)
+                    gg.toast(displayTime)
+                    gg.sleep(1000)
+                end
+                
+                if currentRound >= tonumber(Number) then
+                    local totalTimeSeconds = totalSeconds * tonumber(Number)
+                    local totalMinutes = math.floor(totalTimeSeconds / 60)
+                    local totalSecondsLeft = totalTimeSeconds % 60
+                                        
+                    gg.clearResults()
+                    gg.setValues(Ic_HP_Original_Value)
+                    gg.toast("🚨 คืนค่า HP แล้ว 💉")
+                    gg.sleep(50)
+                    for address, value in pairs(Ic1_Original) do
+                        gg.setValues({{address = address, value = value, flags = gg.TYPE_DWORD}})
+                    end
+                    gg.toast("🌳 ปิด ปั้มของ แล้ว 🏆")
+                    Ic1_Check = false
+                    
+                    gg.alert(string.format("🚨 จบการเล่นทุกรอบแล้ว 🚨\nสรุป : %d รอบ ใช้เวลาทั้งหมด %d นาที %d วินาที", currentRound, totalMinutes, totalSecondsLeft))
+                    return
+                end
+                
+                gg.setVisible(true)
+                gg.sleep(50)
+                gg.setVisible(false)
+                for i = Waiting, 0, -1 do
+                    local wait_currentMinutes = math.floor(i / 60)
+                    local wait_currentSeconds = i % 60
+                    local wait_time = string.format("รอวน %d:%02d น.", wait_currentMinutes, wait_currentSeconds)
+                    gg.toast(wait_time)
+                    gg.sleep(1000)
+                end
+            end
+            break
+        end
+
+        gg.clearResults()
+        gg.setValues(Ic_HP_Original_Value)
+        gg.toast("🚨 คืนค่า HP แล้ว 💉")
+        gg.sleep(50)
+        for address, value in pairs(Ic1_Original) do
+            gg.setValues({{address = address, value = value, flags = gg.TYPE_DWORD}})
+        end
+        gg.toast("🌳 ปิด ปั้มของ แล้ว 🏆")
+        Ic1_Check = false
+        
     elseif selectedType == "🏅 ปั้ม Exp : ใช้ x2 เหรียญ ได้ ( ปรับเวลาหยุดได้ )" then
         local Address_Value_1 = "1"
         local Address_Value_2 = "1"

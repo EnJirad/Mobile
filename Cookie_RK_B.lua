@@ -212,27 +212,32 @@ end
 -------------------------------------------------------------------------------------------------------------------
 
 function Normal_Land()
-    if not NM1_address then
-        gg.clearResults()
-        gg.setRanges(gg.REGION_CODE_APP)
-        gg.searchNumber("1062232653D;-8040W;-3153W:9", gg.TYPE_DWORD, false, gg.SIGN_EQUAL, 0, -1, 0)
-        gg.refineNumber("1062232653", gg.TYPE_DWORD, false, gg.SIGN_EQUAL, 0, -1, 0)
-        Sag_Original = gg.getResults(1000, nil, nil, nil, nil, nil, nil, nil, nil)
-        
-        if #Sag_Original == 0 then
-            gg.alert("ไม่เจอค่า เข้าเล่น แล้วออก ❗")
+        if not NM1_address then
+        result = gg.alert("🐲 เลือกการเสกของ แพท", "เสกปกติ", "เสกไว")
+        if result == 1 then
+            gg.toast("ใช้เสกปกติ แล้ว")
+        elseif result == 2 then
             gg.clearResults()
-            Game_CK()
-        end
-        
-        Sag_Original_Value = gg.getValues(Sag_Original)
-        for i, v in ipairs(Sag_Original) do
-            if v.flags == gg.TYPE_DWORD then
-                v.value = "-1062232653"
+            gg.setRanges(gg.REGION_CODE_APP)
+            gg.searchNumber("1062232653D;-8040W;-3153W:9", gg.TYPE_DWORD, false, gg.SIGN_EQUAL, 0, -1, 0)
+            gg.refineNumber("1062232653", gg.TYPE_DWORD, false, gg.SIGN_EQUAL, 0, -1, 0)
+            Sag_Original = gg.getResults(1000, nil, nil, nil, nil, nil, nil, nil, nil)
+            
+            if #Sag_Original == 0 then
+                gg.alert("ไม่เจอค่า เข้าเล่น แล้วออก ❗")
+                gg.clearResults()
+                Game_CK()
             end
-            gg.setValues(Sag_Original)
+            
+            Sag_Original_Value = gg.getValues(Sag_Original)
+            for i, v in ipairs(Sag_Original) do
+                if v.flags == gg.TYPE_DWORD then
+                    v.value = "-1062232653"
+                end
+                gg.setValues(Sag_Original)
+                gg.toast("ใช้เสกไว แล้ว")
+            end
         end
-        
         gg.clearResults()
         gg.setRanges(gg.REGION_CODE_APP)
         gg.searchNumber("0.81399995089F;123,346.3515625F:5", gg.TYPE_FLOAT, false, gg.SIGN_EQUAL, 0, -1, 0)
@@ -279,7 +284,7 @@ function Normal_Land()
         "🏅 ปั้ม คะแนน คะแนน ห้ามเกิน 110M",
         "📦 ปั้ม กล่อง ( บูส แล้ว เก็บกล่อง ถึงหัวใจ แล้วออก )",
         "🎲 ปั้ม ขึ้น โบนัส รัวๆ ห้ามเกิน 80k บูสด้วย",
-        "💠 ปั้ม วิ่ง ไวจัดๆ ฟังก์ชั่นนี้ เอามัน เฉยๆ",
+        "💠 ใส่โค้ด 4216, 4217, 4218 เอง",
     }
 
     local typeChoice = gg.choice(Name_Choice, nil, "เลือกการเสก")
@@ -363,10 +368,16 @@ function Normal_Land()
         gg.toast(Name)
         NM1_Check = true
         
-    elseif selectedType == "💠 ปั้ม วิ่ง ไวจัดๆ ฟังก์ชั่นนี้ เอามัน เฉยๆ" then
-        local Address_Value_1 = "4291"
-        local Address_Value_2 = "4234"
-        local Address_Value_3 = "4235"
+    elseif selectedType == "💠 ใส่โค้ด 4216, 4217, 4218 เอง" then
+        local inputCode = gg.prompt(
+            {"ช่อง : 4216","ช่อง : 4217", "ช่อง : 4218"},
+            {"4216","4217","4218"},
+            {"","",""}
+        )
+    
+        local Address_Value_1 = inputCode[1]
+        local Address_Value_2 = inputCode[2]
+        local Address_Value_3 = inputCode[3]
         local Name = "💠 ปั้ม วิ่ง ไวจัดๆ ฟังก์ชั่นนี้ เอามัน เฉยๆ"
 
         gg.clearResults()

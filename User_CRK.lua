@@ -1,10 +1,10 @@
 local Users_CRK = {
     {
         No = "1",
-        ID = "JCJIRU",
-        Key = "3cHnw0lB2iZRTHF2UBHtpCLYPlL5SGgC",
+        ID = "XTers",
+        Key = "XTers2001",
         Status = "false",
-        Time = "7"
+        Time = "30"
     },
     {
         No = "2",

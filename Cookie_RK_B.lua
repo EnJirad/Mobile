@@ -1450,7 +1450,7 @@ end
 local Admin = "============================\n" ..
                "สร้างโดย : XTers\n" ..
                "Game : Cookie Run Kakao\n" ..
-               "Update : 21/03/2567\n" ..
+               "Update : 24/03/2567\n" ..
                "============================"
 function Update_script()
     local Telegram = "https://t.me/XTers_Gs"

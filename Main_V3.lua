@@ -54,7 +54,7 @@ if userFile then
     -- รับข้อมูล ID และ Key จากผู้ใช้
     local inputID = gg.prompt(
         {"ช่องกรอก : ID","ช่องกรอก : Key"},
-        {"0MJA2Z","DjzqWK95sZQplo4m4GvFkkcXVOk3biEW"},
+        {"",""},
         {"text","text"}
     )
 

@@ -280,11 +280,11 @@ function Normal_Land()
     end
     
     local Name_Choice = {
+        "💠 ใส่โค้ด 4216, 4217, 4218 เอง",
         "💰 ปั้ม เงิน 80k ใช้ x2 เหรียญ ได้ บูส วิ่ง ด้วย",
         "🏅 ปั้ม คะแนน คะแนน ห้ามเกิน 110M",
         "📦 ปั้ม กล่อง ( บูส แล้ว เก็บกล่อง ถึงหัวใจ แล้วออก )",
         "🎲 ปั้ม ขึ้น โบนัส รัวๆ ห้ามเกิน 80k บูสด้วย",
-        "💠 ใส่โค้ด 4216, 4217, 4218 เอง",
     }
 
     local typeChoice = gg.choice(Name_Choice, nil, "เลือกการเสก")
@@ -299,11 +299,35 @@ function Normal_Land()
         gg.clearResults()
         gg.toast("คุณยังไม่ได้เลือกอะไรเลย ❗")
         Game_CK()
-        return    
+        return
+        
+    elseif selectedType == "💠 ใส่โค้ด 4216, 4217, 4218 เอง" then
+        local inputCode = gg.prompt(
+            {"ช่อง : 4216","ช่อง : 4217", "ช่อง : 4218"},
+            {"4216","4217","4218"},
+            {"","",""}
+        )
+    
+        local Address_Value_1 = inputCode[1]
+        local Address_Value_2 = inputCode[2]
+        local Address_Value_3 = inputCode[3]
+        local Name = "💠 ปั้ม วิ่ง ไวจัดๆ ฟังก์ชั่นนี้ เอามัน เฉยๆ"
+
+        gg.clearResults()
+        gg.setValues({
+            {address = NM1_address, value = Address_Value_1, flags = gg.TYPE_DWORD},
+            {address = NM1_address + 4, value = Address_Value_2, flags = gg.TYPE_DWORD},
+            {address = NM1_address + 8, value = Address_Value_3, flags = gg.TYPE_DWORD}
+        })
+        
+        gg.clearResults()
+        gg.toast(Name)
+        NM1_Check = true
+        
     elseif selectedType == "💰 ปั้ม เงิน 80k ใช้ x2 เหรียญ ได้ บูส วิ่ง ด้วย" then
-        local Address_Value_1 = "4119"
-        local Address_Value_2 = "4235"
-        local Address_Value_3 = "554"
+        local Address_Value_1 = "552"
+        local Address_Value_2 = "553"
+        local Address_Value_3 = "4264"
         local Name = "💰 ปั้ม เงิน 80k ใช้ x2 เหรียญ ได้ บูส วิ่ง ด้วย"
         
         gg.clearResults()
@@ -356,29 +380,6 @@ function Normal_Land()
         local Address_Value_2 = "4121"
         local Address_Value_3 = "4344"
         local Name = "🎲 ปั้ม ขึ้น โบนัส รัวๆ ห้ามเกิน 80k บูสด้วย"
-
-        gg.clearResults()
-        gg.setValues({
-            {address = NM1_address, value = Address_Value_1, flags = gg.TYPE_DWORD},
-            {address = NM1_address + 4, value = Address_Value_2, flags = gg.TYPE_DWORD},
-            {address = NM1_address + 8, value = Address_Value_3, flags = gg.TYPE_DWORD}
-        })
-        
-        gg.clearResults()
-        gg.toast(Name)
-        NM1_Check = true
-        
-    elseif selectedType == "💠 ใส่โค้ด 4216, 4217, 4218 เอง" then
-        local inputCode = gg.prompt(
-            {"ช่อง : 4216","ช่อง : 4217", "ช่อง : 4218"},
-            {"4216","4217","4218"},
-            {"","",""}
-        )
-    
-        local Address_Value_1 = inputCode[1]
-        local Address_Value_2 = inputCode[2]
-        local Address_Value_3 = inputCode[3]
-        local Name = "💠 ปั้ม วิ่ง ไวจัดๆ ฟังก์ชั่นนี้ เอามัน เฉยๆ"
 
         gg.clearResults()
         gg.setValues({

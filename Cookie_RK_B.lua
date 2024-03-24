@@ -327,7 +327,7 @@ function Normal_Land()
     elseif selectedType == "💰 ปั้ม เงิน 80k ใช้ x2 เหรียญ ได้ บูส วิ่ง ด้วย" then
         local Address_Value_1 = "552"
         local Address_Value_2 = "553"
-        local Address_Value_3 = "4264"
+        local Address_Value_3 = "4260"
         local Name = "💰 ปั้ม เงิน 80k ใช้ x2 เหรียญ ได้ บูส วิ่ง ด้วย"
         
         gg.clearResults()

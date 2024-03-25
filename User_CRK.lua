@@ -8,17 +8,17 @@ local Users_CRK = {
     },
     {
         No = "2",
-        ID = "4C5AA",
-        Key = "XlUP5RgxNScCxAvr",
+        ID = "Lucky",
+        Key = "Lucky2001",
         Status = "false",
-        Time = "7"
+        Time = "10000"
     },
     {
         No = "3",
         ID = "67FE5",
         Key = "Z7cj5LjTHWRIFBV8",
         Status = "false",
-        Time = "30"
+        Time = "7"
     },
     {
         No = "4",

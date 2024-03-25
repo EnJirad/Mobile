@@ -20,6 +20,8 @@ if API then
         print("ข้อผิดพลาด: ไม่สามารถเข้าถึง Internet ได้")
         return
     end
+else
+    print("ข้อผิดพลาด: ไม่สามารถเข้าถึง สคริปต์ ได้")
 end
 
 -- เข้ารหัสตัวเลขและสัญลักษณ์
@@ -174,5 +176,4 @@ if userFile then
     end
 else
     os.remove(Check_User)
-    gg.alert("เกิดข้อผิดพลาดใน ระบบ")
 end

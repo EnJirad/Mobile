@@ -294,9 +294,7 @@ function Normal_Land()
     }
 
     local typeChoice = gg.choice(Name_Choice, nil, "เลือกการเสก")
-    local selectedType = Name_Choice[typeChoice]
-    
-    if selectedType == nil then
+    if not typeChoice then
         gg.setValues(HP_Original_Value)
         gg.sleep(50)
         gg.setValues(Sag_Original_Value)
@@ -306,13 +304,38 @@ function Normal_Land()
         gg.toast("คุณยังไม่ได้เลือกอะไรเลย ❗")
         Game_CK()
         return
+    end
+    
+    local selectedType = Name_Choice[typeChoice]
+    if not selectedType then
+        gg.setValues(HP_Original_Value)
+        gg.sleep(50)
+        gg.setValues(Sag_Original_Value)
+        gg.sleep(50)
+        NM_return()
+        gg.clearResults()
+        gg.toast("คุณยังไม่ได้เลือกอะไรเลย ❗")
+        Game_CK()
+        return
+    end
         
-    elseif selectedType == "💠 ใส่โค้ด 4216, 4217, 4218 เอง" then
+    if selectedType == "💠 ใส่โค้ด 4216, 4217, 4218 เอง" then
         local inputCode = gg.prompt(
             {"ช่อง : 4216","ช่อง : 4217", "ช่อง : 4218"},
             {"4216","4217","4218"},
             {"","",""}
         )
+        if not inputCode then
+            gg.setValues(HP_Original_Value)
+            gg.sleep(50)
+            gg.setValues(Sag_Original_Value)
+            gg.sleep(50)
+            NM_return()
+            gg.clearResults()
+            gg.toast("คุณยังไม่ได้เลือกอะไรเลย ❗")
+            Game_CK()
+            return
+        end
     
         local Address_Value_1 = inputCode[1]
         local Address_Value_2 = inputCode[2]
@@ -397,16 +420,6 @@ function Normal_Land()
         gg.clearResults()
         gg.toast(Name)
         NM1_Check = true
-    else
-        gg.setValues(HP_Original_Value)
-        gg.sleep(50)
-        gg.setValues(Sag_Original_Value)
-        gg.sleep(50)
-        NM_return()
-        gg.clearResults()
-        gg.toast("คุณยังไม่ได้เลือกอะไรเลย ❗")
-        Game_CK()
-        return
     end
     
     for i = 10, 0, -1 do
@@ -421,11 +434,34 @@ function Normal_Land()
     }
     
     local typeChoice = gg.choice(Choice_Pet, nil, "เลือกแพท")
+    if not typeChoice then
+        gg.setValues(HP_Original_Value)
+        gg.sleep(50)
+        gg.setValues(Sag_Original_Value)
+        gg.sleep(50)
+        NM_return()
+        gg.clearResults()
+        gg.toast("คุณยังไม่ได้เลือกอะไรเลย ❗")
+        Game_CK()
+        return
+    end
+    
     local inputPet = gg.prompt(
             {"แพท เสก : ค่าเริ่มต้น ดาวสามสี"},
             {"4265"},
             {""}
         )
+        if not inputPet then
+            gg.setValues(HP_Original_Value)
+            gg.sleep(50)
+            gg.setValues(Sag_Original_Value)
+            gg.sleep(50)
+            NM_return()
+            gg.clearResults()
+            gg.toast("คุณยังไม่ได้เลือกอะไรเลย ❗")
+            Game_CK()
+            return
+        end
         
     local Value_ID = inputPet[1]
     if typeChoice == nil then
@@ -528,16 +564,6 @@ function Normal_Land()
         gg.clearResults()
         gg.toast(Name)
         NM3_Check = true
-    else
-        gg.setValues(HP_Original_Value)
-        gg.sleep(50)
-        gg.setValues(Sag_Original_Value)
-        gg.sleep(50)
-        NM_return()
-        gg.clearResults()
-        gg.toast("คุณยังไม่ได้เลือกอะไรเลย ❗")
-        Game_CK()
-        return
     end
 end
 
@@ -605,21 +631,36 @@ function Ice_Land()
     }
 
     local typeChoice = gg.choice(Name_Choice, nil, "เลือกการปั้ม")
-    local selectedType = Name_Choice[typeChoice]
-            
-    if selectedType == nil then
+    if not typeChoice then
         gg.setValues(Ic_HP_Original_Value)
         gg.clearResults()
         gg.toast("คุณยังไม่ได้เลือกอะไรเลย ❗")
         Game_CK()
         return
-        
-    elseif selectedType == "💠 ใส่โค้ด 4216, 4217, 4218 เอง ( ปรับเวลาหยุดได้ )" then
+    end
+    
+    local selectedType = Name_Choice[typeChoice]
+    if not selectedType then
+        gg.setValues(Ic_HP_Original_Value)
+        gg.clearResults()
+        gg.toast("คุณยังไม่ได้เลือกอะไรเลย ❗")
+        Game_CK()
+        return
+    end      
+    
+    if selectedType == "💠 ใส่โค้ด 4216, 4217, 4218 เอง ( ปรับเวลาหยุดได้ )" then
         local inputIce = gg.prompt(
             {"ช่อง : 4216","ช่อง : 4217", "ช่อง : 4218"},
             {"4216","4217","4218"},
             {"","",""}
         )
+        if not inputIce then
+            gg.setValues(Ic_HP_Original_Value)
+            gg.clearResults()
+            gg.toast("คุณยังไม่ได้เลือกอะไรเลย ❗")
+            Game_CK()
+            return
+        end      
     
         local Address_Value_1 = inputIce[1]
         local Address_Value_2 = inputIce[2]
@@ -1254,21 +1295,6 @@ function Ice_Land()
         end
         gg.toast("🌳 ปิด ปั้มของ แล้ว 🏆")
         Ic1_Check = false
-    else
-        if Ic1_Check then
-            gg.clearResults()
-            gg.setValues(Ic_HP_Original_Value)
-            gg.toast("🚨 คืนค่า HP แล้ว 💉")
-            gg.sleep(50)
-            for address, value in pairs(Ic1_Original) do
-                gg.setValues({{address = address, value = value, flags = gg.TYPE_DWORD}})
-            end
-            gg.toast("🌳 ปิด ปั้มของ แล้ว 🏆")
-            Ic1_Check = false
-        end
-        gg.toast("คุณยังไม่ได้เลือกอะไรเลย ❗")
-        Game_CK()
-        return
     end
 end
 

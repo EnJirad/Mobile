@@ -1,3 +1,12 @@
+local Mode = 1
+
+if Mode == 1 then
+    print("หมดเวลาเทสแล้ว")
+elseif Mode == 2 then
+    Cookie_Run()
+end
+
+function Cookie_Run()
 MENUXMR = 1
 gg.setVisible(false)
 
@@ -397,6 +406,16 @@ function Normal_Land()
         gg.clearResults()
         gg.toast(Name)
         NM1_Check = true
+    else
+        gg.setValues(HP_Original_Value)
+        gg.sleep(50)
+        gg.setValues(Sag_Original_Value)
+        gg.sleep(50)
+        NM_return()
+        gg.clearResults()
+        gg.toast("คุณยังไม่ได้เลือกอะไรเลย ❗")
+        Game_CK()
+        return
     end
     
     for i = 10, 0, -1 do
@@ -518,6 +537,16 @@ function Normal_Land()
         gg.clearResults()
         gg.toast(Name)
         NM3_Check = true
+    else
+        gg.setValues(HP_Original_Value)
+        gg.sleep(50)
+        gg.setValues(Sag_Original_Value)
+        gg.sleep(50)
+        NM_return()
+        gg.clearResults()
+        gg.toast("คุณยังไม่ได้เลือกอะไรเลย ❗")
+        Game_CK()
+        return
     end
 end
 
@@ -1234,6 +1263,21 @@ function Ice_Land()
         end
         gg.toast("🌳 ปิด ปั้มของ แล้ว 🏆")
         Ic1_Check = false
+    else
+        if Ic1_Check then
+            gg.clearResults()
+            gg.setValues(Ic_HP_Original_Value)
+            gg.toast("🚨 คืนค่า HP แล้ว 💉")
+            gg.sleep(50)
+            for address, value in pairs(Ic1_Original) do
+                gg.setValues({{address = address, value = value, flags = gg.TYPE_DWORD}})
+            end
+            gg.toast("🌳 ปิด ปั้มของ แล้ว 🏆")
+            Ic1_Check = false
+        end
+        gg.toast("คุณยังไม่ได้เลือกอะไรเลย ❗")
+        Game_CK()
+        return
     end
 end
 
@@ -1517,51 +1561,6 @@ function Off_All()
     end
     gg.sleep(50)
     
--------------------- Auto Pum --------------------
-        
-    if Auto_Check then
-        gg.clearResults()
-        for address, value in pairs(Auto_Original) do
-            gg.setValues({{address = address, value = value, flags = gg.TYPE_DWORD}})
-        end
-        gg.toast("🚇 ปิด ปั้มของ อัตโนมัติ แล้ว 🥌")
-        Auto_Check = false
-    end
-    gg.sleep(50)
-    
-    if Au1_Check then
-        gg.clearResults()
-        gg.setValues(Au1_Original_Value)
-        gg.removeListItems(Au1_Original)
-        gg.toast("🌿 ปิด สัตว์เลี้ยง แล้ว 🌲")
-        Au1_Check = false
-    end
-    gg.sleep(50)
-    
-    if Au2_Check then
-        gg.clearResults()
-        gg.setValues(Au2_Original_Value)
-        gg.removeListItems(Au2_Original)
-        gg.toast("🎋 ปิด สัตว์เลี้ยง แล้ว ☃️")
-        Au2_Check = false
-    end
-    gg.sleep(50)
-    
-    if AA_Check then
-        gg.clearResults()
-        gg.removeListItems(AA)
-        AA_Check = false
-    end
-    gg.sleep(50)
-    
-    if RR_Check then
-        gg.clearResults()
-        gg.removeListItems(RR)
-        gg.toast("🔮 ปิดปั้ม อัตโนมัติ แล้ว 🏺")
-        RR_Check = false
-    end
-    gg.sleep(50)
-    
 -------------------- Other --------------------
     if isSpeed == true then
         local currentSpeed = gg.getSpeed()
@@ -1665,4 +1664,5 @@ while true do
         Game_CK()
     end
     MENUXMR = -1
+end
 end

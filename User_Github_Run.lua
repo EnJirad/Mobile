@@ -188,6 +188,8 @@ elseif Tin == 2 then
                 print("ข้อผิดพลาด: ไม่สามารถเข้าถึง Internet ได้")
                 return
             end
+        else
+            print("ข้อผิดพลาด: ไม่สามารถเข้าถึง สคริปต์ ได้")
         end
         
         local crkFile = io.open(Key_File, "r")
@@ -274,5 +276,7 @@ elseif Tin == 2 then
             print("เกิดข้อผิดพลาดใน ระบบ 2243")
         end
     end
+else
+    print("ข้อผิดพลาด: คุณไม่ได้เลือก อะไรเลย")
 end
 

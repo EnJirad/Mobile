@@ -143,9 +143,25 @@ if Tin == 1 then
             
             for _, user in ipairs(users) do
                 if user.ID == crkData.ID and user.Key == crkData.Key then
-                    if user.Status == crkData.Status then
+                    if user.Status == false then
                         gg.alert("กรุณาติดต่อ แอดมิน เพื่อ เซ็ต ระบบให้ก่อน\n\nสถานะ : false")
                     else
+                        local keyFile = io.open(Key_File, "w")
+                        if keyFile then
+                            local encrypted_ID = encryptNumberAndSymbol(user.ID, shift_amount)
+                            local encrypted_Key = encryptNumberAndSymbol(user.Key, shift_amount)
+                            local encrypted_Status = encryptNumberAndSymbol(user.Status, shift_amount)
+                            local start_time = os.date("%Y/%m/%d/%X")
+                            local end_time = os.date("%Y/%m/%d/%X", os.time() + user.Time * 24 * 60 * 60)
+                            local encrypted_start_time = encryptDateTime(start_time, shift_amount)
+                            local encrypted_end_time = encryptDateTime(end_time, shift_amount)
+                            keyFile:write(string.format("%s|%s|%s|%s|%s", encrypted_ID, encrypted_Key, encrypted_Status, encrypted_start_time, encrypted_end_time))
+                            keyFile:close()
+                            os.remove(Check_User)
+                        else
+                            os.remove(Check_User)
+                            print("เกิดข้อผิดพลาดใน ระบบ 9887")
+                        end
                         local API_URL = "https://raw.githubusercontent.com/EnJirad/Mobile/main/Cookie_RK_VIP.lua"
                         local response = gg.makeRequest(API_URL)
                         if response and response.content then
@@ -285,13 +301,15 @@ elseif Tin == 2 then
                             if keyFile then
                                 local encrypted_ID = encryptNumberAndSymbol(user.ID, shift_amount)
                                 local encrypted_Key = encryptNumberAndSymbol(user.Key, shift_amount)
+                                local encrypted_Status = encryptNumberAndSymbol(user.Status, shift_amount)
                                 local start_time = os.date("%Y/%m/%d/%X")
                                 local end_time = os.date("%Y/%m/%d/%X", os.time() + user.Time * 24 * 60 * 60)
                                 local encrypted_start_time = encryptDateTime(start_time, shift_amount)
                                 local encrypted_end_time = encryptDateTime(end_time, shift_amount)
-                                keyFile:write(string.format("%s|%s|%s|%s", encrypted_ID, encrypted_Key, encrypted_start_time, encrypted_end_time))
+                                keyFile:write(string.format("%s|%s|%s|%s|%s", encrypted_ID, encrypted_Key, encrypted_Status, encrypted_start_time, encrypted_end_time))
                                 keyFile:close()
-                                gg.alert("ID : " .. user.ID .. "\nเพิ่มเวลาอีก : " .. user.Time .. " วัน \n✅ สำเร็จแล้ว ✅")
+                                gg.alert("✅ สำเร็จแล้ว ✅\n\nID : " .. user.ID .. "\nเพิ่มเวลาอีก : " .. user.Time .. " วัน")
+                                os.remove(Check_User)
                             else
                                 os.remove(Check_User)
                                 print("เกิดข้อผิดพลาดใน ระบบ 9887")
@@ -300,13 +318,15 @@ elseif Tin == 2 then
                     end
                 end
             else
+                os.remove(Check_User)
                 print("เกิดข้อผิดพลาดใน ระบบ 5569")
             end
         else
+            os.remove(Check_User)
             print("เกิดข้อผิดพลาดใน ระบบ 2243")
         end
     end
 else
+    os.remove(Check_User)
     print("ข้อผิดพลาด: คุณไม่ได้เลือก อะไรเลย")
 end
-

@@ -1,3 +1,7 @@
+local Mode = 2
+
+
+function Cookie_Run()
 MENUXMR = 1
 gg.setVisible(false)
 
@@ -1655,4 +1659,12 @@ while true do
         Game_CK()
     end
     MENUXMR = -1
+end
+end
+
+
+if Mode == 1 then
+    print("หมดเวลาเทสแล้ว")
+elseif Mode == 2 then
+    Cookie_Run()
 end

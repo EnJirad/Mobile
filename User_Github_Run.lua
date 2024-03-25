@@ -120,10 +120,6 @@ if Tin == 1 then
     local API = gg.makeRequest(API_URL).content
     if API then
         local success, userContent = pcall(load(API))
-        if not success then
-            print("ข้อผิดพลาด: ไม่สามารถเข้าถึง สคริปต์ ได้")
-            return
-        end
     else
         print("ข้อผิดพลาด: ไม่สามารถเข้าถึง สคริปต์ ได้")
         return
@@ -167,10 +163,10 @@ if Tin == 1 then
                 end
             end
         else
-            print("เกิดข้อผิดพลาดในการเปิดไฟล์ register_user.lua")
+            print("เกิดข้อผิดพลาดใน ระบบ 0098")
         end
     else
-        print("เกิดข้อผิดพลาดในการเปิดไฟล์ .com.google.android.crk1")
+        print("เกิดข้อผิดพลาดใน ระบบ 7760")
     end
     
 elseif Tin == 2 then

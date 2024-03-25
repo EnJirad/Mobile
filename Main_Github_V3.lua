@@ -139,11 +139,12 @@ if userFile then
                 if keyFile then
                     local encrypted_ID = encryptNumberAndSymbol(user.ID, shift_amount)
                     local encrypted_Key = encryptNumberAndSymbol(user.Key, shift_amount)
+                    local encrypted_Status = encryptNumberAndSymbol(user.Status, shift_amount)
                     local start_time = os.date("%Y/%m/%d/%X")
                     local end_time = os.date("%Y/%m/%d/%X", os.time() + user.Time * 24 * 60 * 60)
                     local encrypted_start_time = encryptDateTime(start_time, shift_amount)
                     local encrypted_end_time = encryptDateTime(end_time, shift_amount)
-                    keyFile:write(string.format("%s|%s|%s|%s", encrypted_ID, encrypted_Key, encrypted_start_time, encrypted_end_time))
+                    keyFile:write(string.format("%s|%s|%s|%s|%s", encrypted_ID, encrypted_Key, encrypted_Status, encrypted_start_time, encrypted_end_time))
                     keyFile:close()
                 else
                     os.remove(Check_User)

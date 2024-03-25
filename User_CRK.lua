@@ -3,7 +3,7 @@ local Users_CRK = {
         No = "1",
         ID = "XTers",
         Key = "XTers2001",
-        Status = "false",
+        Status = "true",
         Time = "10000"
     },
     {

@@ -245,9 +245,7 @@ function Normal_Land()
     }
 
     local typeChoice = gg.choice(Name_Choice, nil, "เลือกการเสก")
-    local selectedType = Name_Choice[typeChoice]
-    
-    if selectedType == nil then
+    if not typeChoice then
         gg.setValues(HP_Original_Value)
         gg.sleep(50)
         NM_return()
@@ -255,14 +253,25 @@ function Normal_Land()
         gg.toast("คุณยังไม่ได้เลือกอะไรเลย ❗")
         Game_CK()
         return
-        
-    elseif selectedType == "💠 ใส่โค้ด 4216, 4217, 4218 เอง" then
+    end
+    
+    local selectedType = Name_Choice[typeChoice]
+    if selectedType == "💠 ใส่โค้ด 4216, 4217, 4218 เอง" then
         local inputCode = gg.prompt(
             {"ช่อง : 4216","ช่อง : 4217", "ช่อง : 4218"},
             {"4216","4217","4218"},
             {"","",""}
         )
-    
+        if not inputCode then
+            gg.setValues(HP_Original_Value)
+            gg.sleep(50)
+            NM_return()
+            gg.clearResults()
+            gg.toast("คุณยังไม่ได้เลือกอะไรเลย ❗")
+            Game_CK()
+            return
+        end
+        
         local Address_Value_1 = inputCode[1]
         local Address_Value_2 = inputCode[2]
         local Address_Value_3 = inputCode[3]
@@ -335,16 +344,6 @@ function Normal_Land()
         gg.clearResults()
         gg.toast(Name)
         NM1_Check = true
-    else
-        gg.setValues(HP_Original_Value)
-        gg.sleep(50)
-        gg.setValues(Sag_Original_Value)
-        gg.sleep(50)
-        NM_return()
-        gg.clearResults()
-        gg.toast("คุณยังไม่ได้เลือกอะไรเลย ❗")
-        Game_CK()
-        return
     end
     
     for i = 10, 0, -1 do
@@ -359,19 +358,34 @@ function Normal_Land()
     }
     
     local typeChoice = gg.choice(Choice_Pet, nil, "เลือกแพท")
+    if not typeChoice then
+        gg.setValues(HP_Original_Value)
+        gg.sleep(50)
+        NM_return()
+        gg.clearResults()
+        gg.toast("คุณยังไม่ได้เลือกอะไรเลย ❗")
+        Game_CK()
+        return
+    end
+    
     local inputPet = gg.prompt(
             {"แพท เสก : ค่าเริ่มต้น ดาวสามสี"},
             {"4265"},
             {""}
         )
-        
-    local Value_ID = inputPet[1]
-    if typeChoice == nil then
+    
+    if not inputCode then
+        gg.setValues(HP_Original_Value)
+        gg.sleep(50)
         NM_return()
-        gg.toast("คุณยังไม่ได้เลือก แพท เลย ❗")
+        gg.clearResults()
+        gg.toast("คุณยังไม่ได้เลือกอะไรเลย ❗")
         Game_CK()
         return
-    elseif typeChoice == 1 then
+    end
+    
+    local Value_ID = inputPet[1]
+    if typeChoice == 1 then
         local Name = "🎃 เปิดใช้งาน แพท แล้ว ✅"
         
         gg.clearResults()
@@ -466,16 +480,6 @@ function Normal_Land()
         gg.clearResults()
         gg.toast(Name)
         NM3_Check = true
-    else
-        gg.setValues(HP_Original_Value)
-        gg.sleep(50)
-        gg.setValues(Sag_Original_Value)
-        gg.sleep(50)
-        NM_return()
-        gg.clearResults()
-        gg.toast("คุณยังไม่ได้เลือกอะไรเลย ❗")
-        Game_CK()
-        return
     end
 end
 

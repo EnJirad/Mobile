@@ -184,10 +184,6 @@ elseif Tin == 2 then
         local API = gg.makeRequest(API_URL).content
         if API then
             local success, userContent = pcall(load(API))
-            if not success then
-                print("ข้อผิดพลาด: ไม่สามารถเข้าถึง Internet ได้")
-                return
-            end
         else
             print("ข้อผิดพลาด: ไม่สามารถเข้าถึง สคริปต์ ได้")
         end

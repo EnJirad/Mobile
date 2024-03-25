@@ -1,4 +1,8 @@
-local Time = 5
+-- 60 = 1 นาที
+-- 300 = 5 นาที
+-- 600 = 10 นาที
+
+local Time = 60
 
 
 local GG = gg.PACKAGE

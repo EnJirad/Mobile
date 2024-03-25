@@ -98,7 +98,7 @@ if userFile then
                 function Update_script()
                     local Telegram = "https://t.me/XTers_Gs"
                     local Discord = "https://discord.com/invite/uEtuuDcYdg"
-                    local message = "🚫 Key นี้ถูกใช้ไปแล้ว : ติดต่อเช่าสคริปต์\n\n" ..
+                    local message = "🚫 สนใจ : ติดต่อเช่าสคริปต์\n\n" ..
                                     "🍇 Telegram : " .. Telegram .. "\n" ..
                                     "🌶️ Discord : " .. Discord .. "\n\n" ..
                                     "เช่า 1 วัน : 20 บาท\n" ..
@@ -123,7 +123,7 @@ if userFile then
                         return
                     end
                 end
-                gg.alert("🚫 User นี้ถูกใช้ไปแล้ว")
+                gg.alert("🚫 User นี้ถูกใช้ไปแล้ว\n\nID : " .. user.ID .. " \nKey : " .. user.Key)
                 Update_script()
                 os.remove(Check_User)
                 return

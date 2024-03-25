@@ -7,7 +7,7 @@ local Time = 600
 
 local GG = gg.PACKAGE
 local file_path = "/storage/emulated/0/Android/data/" .. GG .. "/cache/"
-local time_file = file_path .. "time_range.lua"
+local time_file = file_path .. "outtime"
 
 local start_time_value = 0
 local end_time_value = 0

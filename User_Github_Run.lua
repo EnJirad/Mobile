@@ -146,18 +146,10 @@ if Tin == 1 then
                     if user.Status == crkData.Status then
                         gg.alert("กรุณาติดต่อ แอดมิน เพื่อ เซ็ต ระบบให้ก่อน\n\nสถานะ : false")
                     else
-                        if success then
-                            local API_URL = "https://raw.githubusercontent.com/EnJirad/Mobile/main/Cookie_RK_B.lua"
-                            local response = gg.makeRequest(API_URL)
-                            if response and response.content then
-                                local success, userContent = pcall(load(response.content))
-                            end
-                        else
-                            local API_URL = "https://raw.githubusercontent.com/EnJirad/Mobile/main/Main_Github_V3.lua"
-                            local response = gg.makeRequest(API_URL)
-                            if response and response.content then
-                                local success, userContent = pcall(load(response.content))
-                            end
+                        local API_URL = "https://raw.githubusercontent.com/EnJirad/Mobile/main/Cookie_RK_B.lua"
+                        local response = gg.makeRequest(API_URL)
+                        if response and response.content then
+                            local success, userContent = pcall(load(response.content))
                         end
                     end
                 end
@@ -166,17 +158,16 @@ if Tin == 1 then
             print("เกิดข้อผิดพลาดใน ระบบ 0098")
         end
     else
-        print("เกิดข้อผิดพลาดใน ระบบ 7760")
+        local API_URL = "https://raw.githubusercontent.com/EnJirad/Mobile/main/Main_Github_V3.lua"
+        local response = gg.makeRequest(API_URL)
+        if response and response.content then
+            local success, userContent = pcall(load(response.content))
+        end
     end
     
 elseif Tin == 2 then
     local crkFile = io.open(Key_File, "r")
     if not crkFile then
-        local Admin = "============================\n" ..
-                       "สร้างโดย : XTers\n" ..
-                       "Game : Cookie Run Kakao\n" ..
-                       "Update : 21/03/2567\n" ..
-                       "============================"
         function Update_script()
             local Telegram = "https://t.me/XTers_Gs"
             local Discord = "https://discord.com/invite/uEtuuDcYdg"
@@ -193,15 +184,13 @@ elseif Tin == 2 then
             if result == 1 then
                 gg.copyText(Telegram)
                 gg.toast("คัดลอก Telegram เรียบร้อยแล้ว")
-                print(Admin)
                 return
             elseif result == 2 then
                 gg.copyText(Discord)
                 gg.toast("คัดลอก Discord เรียบร้อยแล้ว")
-                print(Admin)
                 return
             elseif result == 3 then
-                print(Admin)
+                print("ขอบคุณที่สนใจสคริปต์ของเรา")
                 return
             end
         end

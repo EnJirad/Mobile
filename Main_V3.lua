@@ -152,7 +152,7 @@ if userFile then
                 end
                 
                 os.remove(Check_User)
-                print("✅ กรุณา รัน สคริปต์ อีกครั้ง ✅")
+                print("✅ ติดต่อแอดมินให้เซ็ตระบบให้ ✅\nทักไปบอกแอดมินว่า ( สมัครเสร็จแล้ว )")
                 break
             end
         elseif user.ID == inputID[1] then

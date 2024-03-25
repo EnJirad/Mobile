@@ -1,10 +1,3 @@
-local Mode = 1
-
-if Mode == 1 then
-    print("หมดเวลาเทสแล้ว")
-elseif Mode == 2 then
-    Cookie_Run()
-end
 
 function Cookie_Run()
 MENUXMR = 1
@@ -1665,4 +1658,12 @@ while true do
     end
     MENUXMR = -1
 end
+end
+
+
+local Mode = 1
+if Mode == 1 then
+    print("หมดเวลาเทสแล้ว")
+elseif Mode == 2 then
+    Cookie_Run()
 end

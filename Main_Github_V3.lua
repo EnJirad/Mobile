@@ -123,7 +123,7 @@ if userFile then
                         return
                     end
                 end
-                gg.alert("🚫 คุณไม่ใช่ User")
+                gg.alert("🚫 User นี้ถูกใช้ไปแล้ว")
                 Update_script()
                 os.remove(Check_User)
                 return

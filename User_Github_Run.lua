@@ -143,8 +143,16 @@ if Tin == 1 then
             
             for _, user in ipairs(users) do
                 if user.ID == crkData.ID and user.Key == crkData.Key then
-                    if user.Status == false then
-                        gg.alert("กรุณาติดต่อ แอดมิน เพื่อ เซ็ต ระบบให้ก่อน\n\nสถานะ : false")
+                    if user.Status == crkData.Status then
+                        if user.Status == true then
+                            local API_URL = "https://raw.githubusercontent.com/EnJirad/Mobile/main/Cookie_RK_VIP.lua"
+                            local response = gg.makeRequest(API_URL)
+                            if response and response.content then
+                                local success, userContent = pcall(load(response.content))
+                            end
+                        else
+                            gg.alert("กรุณาติดต่อ แอดมิน เพื่อ เซ็ต ระบบให้ก่อน\n\nสถานะ : false")
+                        end
                     else
                         local startDate = os.time{year=tonumber(decryptedData.Start:sub(1,4)), month=tonumber(decryptedData.Start:sub(6,7)), day=tonumber(decryptedData.Start:sub(9,10))}
                         local endDate = os.time{year=tonumber(decryptedData.End:sub(1,4)), month=tonumber(decryptedData.End:sub(6,7)), day=tonumber(decryptedData.End:sub(9,10))}

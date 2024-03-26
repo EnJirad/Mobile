@@ -735,7 +735,12 @@ function Ice_Land()
                     gg.sleep(1000)
                 end
                 gg.toast("เริ่ม จับเวลา")
-                gg.sleep(1000)
+                gg.sleep(3000)
+                
+                local currentSpeed = gg.getSpeed()
+                if currentSpeed ~= "30" then
+                    gg.setSpeed("30")
+                end
                 
                 for i = 0, totalSeconds do
                     local currentMinutes = math.floor(i / 60)
@@ -743,6 +748,11 @@ function Ice_Land()
                     local displayTime = string.format("รอบที่ %d เวลา %d:%02d น.", currentRound, currentMinutes, currentSeconds)
                     gg.toast(displayTime)
                     gg.sleep(1000)
+                end
+                
+                local currentSpeed = gg.getSpeed()
+                if currentSpeed ~= "1" then
+                    gg.setSpeed("1")
                 end
                 
                 if currentRound >= tonumber(Number) then
@@ -862,7 +872,12 @@ function Ice_Land()
                     gg.sleep(1000)
                 end
                 gg.toast("เริ่ม จับเวลา")
-                gg.sleep(1000)
+                gg.sleep(3000)
+                
+                local currentSpeed = gg.getSpeed()
+                if currentSpeed ~= "30" then
+                    gg.setSpeed("30")
+                end
                 
                 for i = 0, totalSeconds do
                     local currentMinutes = math.floor(i / 60)
@@ -870,6 +885,11 @@ function Ice_Land()
                     local displayTime = string.format("รอบที่ %d เวลา %d:%02d น.", currentRound, currentMinutes, currentSeconds)
                     gg.toast(displayTime)
                     gg.sleep(1000)
+                end
+                
+                local currentSpeed = gg.getSpeed()
+                if currentSpeed ~= "1" then
+                    gg.setSpeed("1")
                 end
                 
                 if currentRound >= tonumber(Number) then
@@ -989,7 +1009,12 @@ function Ice_Land()
                     gg.sleep(1000)
                 end
                 gg.toast("เริ่ม จับเวลา")
-                gg.sleep(1000)
+                gg.sleep(3000)
+                
+                local currentSpeed = gg.getSpeed()
+                if currentSpeed ~= "30" then
+                    gg.setSpeed("30")
+                end
                 
                 for i = 0, totalSeconds do
                     local currentMinutes = math.floor(i / 60)
@@ -997,6 +1022,11 @@ function Ice_Land()
                     local displayTime = string.format("รอบที่ %d เวลา %d:%02d น.", currentRound, currentMinutes, currentSeconds)
                     gg.toast(displayTime)
                     gg.sleep(1000)
+                end
+                
+                local currentSpeed = gg.getSpeed()
+                if currentSpeed ~= "1" then
+                    gg.setSpeed("1")
                 end
                 
                 if currentRound >= tonumber(Number) then
@@ -1116,7 +1146,11 @@ function Ice_Land()
                     gg.sleep(1000)
                 end
                 gg.toast("เริ่ม จับเวลา")
-                gg.sleep(1000)
+                gg.sleep(3000)
+                local currentSpeed = gg.getSpeed()
+                if currentSpeed ~= "30" then
+                    gg.setSpeed("30")
+                end
                 
                 for i = 0, totalSeconds do
                     local currentMinutes = math.floor(i / 60)
@@ -1126,6 +1160,10 @@ function Ice_Land()
                     gg.sleep(1000)
                 end
                 
+                local currentSpeed = gg.getSpeed()
+                if currentSpeed ~= "1" then
+                    gg.setSpeed("1")
+                end
                 if currentRound >= tonumber(Number) then
                     local totalTimeSeconds = totalSeconds * tonumber(Number)
                     local totalMinutes = math.floor(totalTimeSeconds / 60)
@@ -1206,7 +1244,7 @@ function Ice_Land()
         local lastSavedTime3 = readTimeFromFile()
         Input_Time = gg.prompt(
             {"ใส่เวลา ที่อยากให้หยุด เกม (รูปแบบ = 10:20 นาที - 0:30 วินาที)", "ใส่จำนวนรอบในการเล่น ( นับตามกุญแจ )", "ใส่เวลา รอวน อีกครั้ง"},
-            {lastSavedTime3 or "00:13","1","15"},
+            {lastSavedTime3 or "00:08","1","15"},
             {"text", "text", "text"}
         )
         
@@ -1243,7 +1281,11 @@ function Ice_Land()
                     gg.sleep(1000)
                 end
                 gg.toast("เริ่ม จับเวลา")
-                gg.sleep(1000)
+                gg.sleep(3000)
+                local currentSpeed = gg.getSpeed()
+                if currentSpeed ~= "30" then
+                    gg.setSpeed("30")
+                end
                 
                 for i = 0, totalSeconds do
                     local currentMinutes = math.floor(i / 60)
@@ -1251,6 +1293,10 @@ function Ice_Land()
                     local displayTime = string.format("รอบที่ %d เวลา %d:%02d น.", currentRound, currentMinutes, currentSeconds)
                     gg.toast(displayTime)
                     gg.sleep(1000)
+                end
+                local currentSpeed = gg.getSpeed()
+                if currentSpeed ~= "1" then
+                    gg.setSpeed("1")
                 end
                 
                 if currentRound >= tonumber(Number) then

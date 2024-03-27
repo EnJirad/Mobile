@@ -145,29 +145,6 @@ if Tin == 1 then
                 if user.ID == crkData.ID and user.Key == crkData.Key then
                     if user.Status == crkData.Status then
                         if user.Status == "true" then
-                            local startDate = os.time{year=tonumber(decryptedData.Start:sub(1,4)), month=tonumber(decryptedData.Start:sub(6,7)), day=tonumber(decryptedData.Start:sub(9,10))}
-                            local endDate = os.time{year=tonumber(decryptedData.End:sub(1,4)), month=tonumber(decryptedData.End:sub(6,7)), day=tonumber(decryptedData.End:sub(9,10))}
-                            local secondsPerDay = 24 * 60 * 60
-                            local remainingSeconds = endDate - os.time()
-                            remainingDays = math.floor(remainingSeconds / secondsPerDay)
-                            
-                            local keyFile = io.open(Key_File, "w")
-                            if keyFile then
-                                local encrypted_ID = encryptNumberAndSymbol(decryptedData.ID, shift_amount)
-                                local encrypted_Key = encryptNumberAndSymbol(decryptedData.Key, shift_amount)
-                                local encrypted_Status = encryptNumberAndSymbol(user.Status, shift_amount)
-                                local start_time = os.date("%Y/%m/%d/%X")
-                                local end_time = os.date("%Y/%m/%d/%X", os.time() + user.Time * 24 * 60 * 60)
-                                local encrypted_start_time = encryptDateTime(decryptedData.Start, shift_amount)
-                                local encrypted_end_time = encryptDateTime(decryptedData.End, shift_amount)
-                                keyFile:write(string.format("%s|%s|%s|%s|%s", encrypted_ID, encrypted_Key, encrypted_Status, encrypted_start_time, encrypted_end_time))
-                                keyFile:close()
-                                os.remove(Check_User)
-                            else
-                                os.remove(Check_User)
-                                print("เกิดข้อผิดพลาดใน ระบบ 9887")
-                            end
-                            
                             local API_URL = "https://raw.githubusercontent.com/EnJirad/Mobile/main/Cookie_RK_VIP.lua"
                             local response = gg.makeRequest(API_URL)
                             if response and response.content then
@@ -175,6 +152,34 @@ if Tin == 1 then
                             end
                         else
                             gg.alert("กรุณาติดต่อ แอดมิน เพื่อ เซ็ต ระบบให้ก่อน\n\nสถานะ : false")
+                        end
+                    else 
+                        local startDate = os.time{year=tonumber(decryptedData.Start:sub(1,4)), month=tonumber(decryptedData.Start:sub(6,7)), day=tonumber(decryptedData.Start:sub(9,10))}
+                        local endDate = os.time{year=tonumber(decryptedData.End:sub(1,4)), month=tonumber(decryptedData.End:sub(6,7)), day=tonumber(decryptedData.End:sub(9,10))}
+                        local secondsPerDay = 24 * 60 * 60
+                        local remainingSeconds = endDate - os.time()
+                        remainingDays = math.floor(remainingSeconds / secondsPerDay)
+                        
+                        local keyFile = io.open(Key_File, "w")
+                        if keyFile then
+                            local encrypted_ID = encryptNumberAndSymbol(decryptedData.ID, shift_amount)
+                            local encrypted_Key = encryptNumberAndSymbol(decryptedData.Key, shift_amount)
+                            local encrypted_Status = encryptNumberAndSymbol(user.Status, shift_amount)
+                            local start_time = os.date("%Y/%m/%d/%X")
+                            local end_time = os.date("%Y/%m/%d/%X", os.time() + user.Time * 24 * 60 * 60)
+                            local encrypted_start_time = encryptDateTime(decryptedData.Start, shift_amount)
+                            local encrypted_end_time = encryptDateTime(decryptedData.End, shift_amount)
+                            keyFile:write(string.format("%s|%s|%s|%s|%s", encrypted_ID, encrypted_Key, encrypted_Status, encrypted_start_time, encrypted_end_time))
+                            keyFile:close()
+                            os.remove(Check_User)
+                        else
+                            os.remove(Check_User)
+                            print("เกิดข้อผิดพลาดใน ระบบ 9887")
+                        end
+                        local API_URL = "https://raw.githubusercontent.com/EnJirad/Mobile/main/Cookie_RK_VIP.lua"
+                        local response = gg.makeRequest(API_URL)
+                        if response and response.content then
+                            local success, userContent = pcall(load(response.content))
                         end
                     end
                 end
